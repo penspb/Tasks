@@ -60,13 +60,13 @@ int searching(int array[], int length)
 
 	for (int i = 1; i < length; i++)
 	{
-		if (array[i] == array[i - 1])
+		if (array[i] == element)
 		{
 			quantity++;
 		}
 		else
 		{
-			if (quantity > more)
+			if (quantity >= more)
 			{
 				more = quantity;
 				element = array[i - 1];
@@ -86,7 +86,10 @@ bool test()
 	{
 		return true;
 	}
-	return false;
+	else
+	{
+		return false;
+	}
 }
 
 int main()
