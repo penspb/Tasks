@@ -1,5 +1,5 @@
-#include <iostream>
 #include "qSort.h"
+#include <iostream>
 #include <fstream>
 
 using namespace std;
@@ -35,8 +35,8 @@ int searching(int array[], int length)
 bool test()
 {
 	const int length = 9;
-	int array[length] = {1, 2, 3, 2, 9, 9, 2, 1, 2};
-	
+	int array[length] = { 1, 2, 3, 2, 9, 9, 2, 1, 2 };
+
 	return searching(array, length) == 2;
 }
 

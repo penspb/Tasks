@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6AE80FE2-290B-4D0F-B42E-506F2977AAF1}</ProjectGuid>
+    <ProjectGuid>{07681696-7234-42A2-8620-ED2D8C9F78D3}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>My42</RootNamespace>
   </PropertyGroup>
@@ -78,11 +78,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="2.cpp" />
-    <ClCompile Include="binary.cpp" />
+    <ClInclude Include="qSort.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="binary.h" />
+    <ClCompile Include="4.2.cpp" />
+    <ClCompile Include="qSort.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
