@@ -1,10 +1,10 @@
-#include <iostream>
 #include "stack.h"
+#include <iostream>
 #include <string>
 
 using namespace std;
 
-char pair0(char symbol)
+char pairOfSymbol(char symbol)
 {
 	if (symbol == ')')
 	{
@@ -22,7 +22,7 @@ char pair0(char symbol)
 	}
 }
 
-bool balance(string line)
+bool balance(string &line)
 {
 	Stack *workingStack = nullptr;
 
@@ -36,13 +36,16 @@ bool balance(string line)
 		else
 		{
 			char result = pop(workingStack);
-			if (result != pair0(line[i]))
+			if (result != pairOfSymbol(line[i]))
 			{
 				return false;
 			}
 		}
 	}
-	return isEmpty(workingStack);
+
+	bool result = isEmpty(workingStack);
+	deleteStack(workingStack);
+	return result;
 }
 
 bool test1()
@@ -79,6 +82,5 @@ int main()
 	{
 		cout << "Последовательность не сбалансирована" << endl;
 	}
-
 	return 0;
 }

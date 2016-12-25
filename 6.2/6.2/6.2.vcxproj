@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{22C71DB3-E9D1-4851-B9B5-32DAB11E16F8}</ProjectGuid>
+    <ProjectGuid>{E6987124-67D3-4620-95D0-3B8D7015626F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>My62</RootNamespace>
   </PropertyGroup>
@@ -78,7 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="2.cpp" />
+    <ClCompile Include="6.2.cpp" />
     <ClCompile Include="stack.cpp" />
   </ItemGroup>
   <ItemGroup>

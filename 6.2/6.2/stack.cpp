@@ -20,8 +20,7 @@ void deleteStack(Stack *&head)
 
 void push(Stack *&head, char value)
 {
-	auto newElement = new Stack{ value, head };
-	head = newElement;
+	head = new Stack{ value, head };
 }
 
 bool isEmpty(Stack *head)
