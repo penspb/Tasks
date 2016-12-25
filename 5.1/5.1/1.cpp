@@ -28,7 +28,7 @@ void add(int value, ListElement *&head)
 		{
 			zero = zero->next;
 		}
-		
+
 		auto newElement = new ListElement{ value, zero->next };
 		zero->next = newElement;
 	}
@@ -66,31 +66,27 @@ void deleteElement(int value, ListElement *&head)
 	ListElement *zero = new ListElement;
 	zero = head;
 
-	ListElement *first = new ListElement;
-	first = head;
-
-	while ((first != nullptr) && (first->value != value))
+	while ((zero->next != nullptr) && (zero->next->value != value))
 	{
-		zero = first;
-		first = first->next;
+		zero = zero->next;
 	}
 
-	if (first == nullptr)
+	if (zero->next == nullptr)
 	{
 		cout << "there is no element which is equal to the value";
 	}
 	else
 	{
-		if (first == zero)
+		if (zero->next == zero)
 		{
 			deleteOfHead(head);
 		}
 		else
 		{
-			if (first->value == value)
+			if (zero->next->value == value)
 			{
-				zero->next = first->next;
-				first = nullptr;
+				ListElement *first = zero->next;
+				zero->next = zero->next->next;
 				delete first;
 			}
 		}
@@ -127,31 +123,42 @@ int main()
 	cout << "3 Ц распечатать список" << endl;
 
 	int reading = 0;
-	cin >> reading;
+	bool checking = false;
 
-	while (reading != 0)
+	while (!checking)
 	{
-		if (reading == 1)
+		cin >> reading;
+		switch (reading)
+		{
+		case 0:
+			checking = true;
+			break;
+
+		case 1:
 		{
 			int value1 = 0;
 			cin >> value1;
 			add(value1, workingList);
-		}
-		else
-		{
-			if (reading == 2)
-			{
-				int value2 = 0;
-				cin >> value2;
-				deleteElement(value2, workingList);
-			}
-			else
-			{
-				print(workingList);
-			}
+			break;
 		}
 
-		cin >> reading;
+		case 2:
+		{
+			int value2 = 0;
+			cin >> value2;
+			deleteElement(value2, workingList);
+			break;
+		}
+
+		case 3:
+		{
+			print(workingList);
+			break;
+		}
+
+		default:
+			cout << "ќшибка исполнени€";
+		}
 	}
 
 	deleteList(workingList);
