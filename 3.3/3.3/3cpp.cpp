@@ -58,11 +58,16 @@ int searching(int array[], int length)
 	int more = 1;
 	int element = array[0];
 
+
 	for (int i = 1; i < length; i++)
 	{
-		if (array[i] == element)
+		if (array[i] == array[i - 1])
 		{
 			quantity++;
+			if ((i == length - 1) && (quantity >= more))
+			{
+				element = array[i];
+			}
 		}
 		else
 		{
@@ -70,26 +75,28 @@ int searching(int array[], int length)
 			{
 				more = quantity;
 				element = array[i - 1];
+				quantity = 1;
 			}
-			quantity = 1;
 		}
 	}
 
 	return element;
 }
 
-bool test()
+bool test1()
 {
 	const int length = 9;
 	int array[length] = { 1, 2, 3, 2, 9, 9, 2, 1, 2 };
-	if (searching(array, length) == 2)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	
+	return searching(array, length) == 2;
+}
+
+bool test2()
+{
+	const int length = 8;
+	int array[length] = { 1, 2, 3, 4, 4, 5, 5, 5 };
+
+	return searching(array, length) == 5;
 }
 
 int main()
@@ -97,7 +104,7 @@ int main()
 	setlocale(LC_ALL, "Russian");
 
 	cout << "Выполняется проверка тестов:" << endl;
-	if (test())
+	if (test1() && test2())
 	{
 		cout << "Запуск программы" << endl << endl;
 	}
@@ -121,7 +128,7 @@ int main()
 
 	int element = searching(array, length);
 
-	cout << "Искомый элемент: " << element;
+	cout << "Искомый элемент: " << element << endl;
 
 	delete[] array;
 	return 0;
