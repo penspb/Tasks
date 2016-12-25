@@ -63,8 +63,7 @@ void deleteList(ListElement *&head)
 
 void deleteElement(int value, ListElement *&head)
 {
-	ListElement *zero = new ListElement;
-	zero = head;
+	ListElement *zero = head;
 
 	while ((zero->next != nullptr) && (zero->next->value != value))
 	{
