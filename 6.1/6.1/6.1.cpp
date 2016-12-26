@@ -52,7 +52,9 @@ int result(string &line)
 			}
 		}
 	}
-	return pop(workingStack);
+	int intresult = pop(workingStack);
+	deleteStack(workingStack);
+	return intresult;
 }
 
 bool test()
