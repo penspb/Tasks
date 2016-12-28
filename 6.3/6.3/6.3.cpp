@@ -14,7 +14,7 @@ bool bracket(char ch)
 	return ch == ')' || ch == '(';
 }
 
-string result(string &line)
+string result(const string &line)
 {
 	Stack *workingStack = nullptr;
 	string stringResult = "";
@@ -115,4 +115,6 @@ int main()
 	getline(cin, line);
 
 	cout << "Значение выражения: " << result(line) << endl;
+
+	return 0;
 }
