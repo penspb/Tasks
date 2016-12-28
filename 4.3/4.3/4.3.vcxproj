@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7F9DBF0F-97B7-4FAF-A5A8-6186E2342F59}</ProjectGuid>
+    <ProjectGuid>{A6ED4C4F-FA94-4C95-84EF-7C6DE5C15037}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>My43</RootNamespace>
   </PropertyGroup>
@@ -78,7 +78,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Исходный код.cpp" />
+    <ClCompile Include="4.3.cpp" />
+    <ClCompile Include="phonebook.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="phonebook.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
