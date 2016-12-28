@@ -1,8 +1,6 @@
 #include "phonebook.h"
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <io.h>
 
 void assunder(Phonebook *&head, Phonebook *&left, Phonebook *&right)
 {

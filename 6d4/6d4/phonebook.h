@@ -34,4 +34,4 @@ std::string returnName(Phonebook *head);
 Phonebook *returnNext(Phonebook *head);
 
 //add after last element
-void addAfter(Phonebook *&head, std::string name, std::string number);
+void addAfter(Phonebook *&head, const std::string &name, const std::string &number);

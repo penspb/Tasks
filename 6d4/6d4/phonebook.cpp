@@ -91,7 +91,7 @@ Phonebook *returnNext(Phonebook *head)
 	return head->next;
 }
 
-void addAfter(Phonebook *&head, string name, string number)
+void addAfter(Phonebook *&head, const string &name, const string &number)
 {
 	Phonebook *zero = head;
 
