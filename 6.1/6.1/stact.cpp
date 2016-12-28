@@ -15,6 +15,7 @@ void deleteStack(Stack *&head)
 	{
 		Stack *oldHead = head;
 		head = head->next;
+		delete oldHead;
 	}
 }
 

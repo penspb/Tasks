@@ -27,26 +27,24 @@ int sign(int a, int b, char ch)
 	}
 }
 
-int result(string &line)
+int result(const string &line)
 {
 	int sizeOfLine = line.length();
 	Stack *workingStack = nullptr;
 
-	int a = 0;
-	int b = 0;
 
 	for (int i = 0; i < sizeOfLine; i++)
 	{
 		if (line[i] != ' ')
 		{
-			if ((int(line[i]) <= '9') && (int(line[i]) >= '0'))
+			if (line[i] <= '9') && (line[i] >= '0')
 			{
 				push(workingStack, int(line[i]) - '0');
 			}
 			else
 			{
-				a = pop(workingStack);
-				b = pop(workingStack);
+				int a = pop(workingStack);
+				int b = pop(workingStack);
 				int value = sign(b, a, line[i]);
 				push(workingStack, value);
 			}
@@ -80,4 +78,6 @@ int main()
 	getline(cin, line);
 	
 	cout << "Значение выражения: " << result(line) << endl;
+
+	return 0;
 }
