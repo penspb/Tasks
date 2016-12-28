@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void add(phoneBook array[], int quantity, string name, string phone)
+void add(phoneBook array[], int quantity, const string &name, const string &phone)
 {
 	int i = 0;
 
@@ -33,7 +33,7 @@ void print(phoneBook array[], int quantity)
 	}
 }
 
-void findingNumber(phoneBook array[], int quantity, string name)
+void findingNumber(phoneBook array[], int quantity, const string &name)
 {
 	bool check = false;
 	for (int i = 0; i < quantity; i++)
@@ -52,7 +52,7 @@ void findingNumber(phoneBook array[], int quantity, string name)
 	}
 }
 
-void findingName(phoneBook array[], int quantity, string number)
+void findingName(phoneBook array[], int quantity, const string &number)
 {
 	bool check = false;
 	for (int i = 0; i < quantity; i++)
@@ -73,12 +73,12 @@ void findingName(phoneBook array[], int quantity, string number)
 
 void save(phoneBook array[], int quantity)
 {
-	FILE *ptrFile = fopen("retext.txt", "w");
+	FILE *ptrFile = fopen("text.txt", "w");
 	if (!access("text.txt", 0))
 	{
 		for (int i = 0; i < quantity; i++)
 		{
-			cout << array[i].name << " " << array[i].number << endl;
+			ptrFile << array[i].name << " " << array[i].number << endl;
 		}
 	}
 
@@ -98,8 +98,8 @@ void read(phoneBook array[], int &quantity)
 	{
 		string name = "";
 		string phone = "";
-		cin >> name;
-		cin >> phone;
+		ptrFile >> name;
+		ptrFile >> phone;
 		add(array, quantity, name, phone);
 		quantity++;
 	}

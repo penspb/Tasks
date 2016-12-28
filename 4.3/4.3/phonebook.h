@@ -9,16 +9,16 @@ struct phoneBook
 };
 
 //add new information about the subscriber
-void add(phoneBook array[], int quantity, std::string name, std::string phone);
+void add(phoneBook array[], int quantity, const std::string &name, const std::string &phone);
 
 //prtint all information from phonebook
 void print(phoneBook array[], int quantity);
 
 //search the phonenumber by suscriber's name
-void findingNumber(phoneBook array[], int quantity, std::string name);
+void findingNumber(phoneBook array[], int quantity, const std::string &name);
 
 //search the subscriber by number
-void findingName(phoneBook array[], int quantity, std::string number);
+void findingName(phoneBook array[], int quantity, const std::string &number);
 
 //save phonebook in file
 void save(phoneBook array[], int quantity);
