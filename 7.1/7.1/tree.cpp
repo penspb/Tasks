@@ -142,3 +142,27 @@ void deleteValue(int value, Tree *tree)
 		}
 	}
 }
+
+void deleteTree(Tree *tree)
+{
+	if (tree == nullptr)
+	{
+		delete tree;
+		return;
+	}
+	if ((tree->left == nullptr) && (tree->right == nullptr))
+	{
+		delete tree;
+	}
+	else
+	{
+		if (tree->right != nullptr)
+		{
+			deleteTree(tree->right);
+		}
+		if (tree->left != nullptr)
+		{
+			deleteTree(tree->left);
+		}
+	}
+}
