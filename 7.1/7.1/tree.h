@@ -16,7 +16,7 @@ void printFromMinToMax(Tree *tree);
 void add(int value, Tree *&tree);
 
 //delete value
-void deleteValue(int value, Tree *tree);
+void deleteValue(int value, Tree *&tree);
 
 //delete tree
-void deleteTree(Tree *tree);
+void deleteTree(Tree *&tree);

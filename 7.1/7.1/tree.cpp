@@ -18,11 +18,11 @@ bool searchValue(int value, Tree *tree)
 	}
 	if (value > tree->value)
 	{
-		searchValue(value, tree->right);
+		searchValue(value, tree->left);
 	}
 	if (value < tree->value)
 	{
-		searchValue(value, tree->left);
+		searchValue(value, tree->right);
 	}
 
 	return true;
@@ -88,11 +88,16 @@ void add(int value, Tree *&tree)
 	}
 }
 
-void deleteValue(int value, Tree *tree)
+void deleteValue(int value, Tree *&tree)
 {
 	if (!searchValue(value, tree))
 	{
 		cout << "This value isn't available" << endl;
+		return;
+	}
+
+	if (tree == nullptr)
+	{
 		return;
 	}
 
@@ -143,26 +148,10 @@ void deleteValue(int value, Tree *tree)
 	}
 }
 
-void deleteTree(Tree *tree)
+void deleteTree(Tree *&tree)
 {
-	if (tree == nullptr)
+	while (tree != nullptr)
 	{
-		delete tree;
-		return;
-	}
-	if ((tree->left == nullptr) && (tree->right == nullptr))
-	{
-		delete tree;
-	}
-	else
-	{
-		if (tree->right != nullptr)
-		{
-			deleteTree(tree->right);
-		}
-		if (tree->left != nullptr)
-		{
-			deleteTree(tree->left);
-		}
+		deleteValue(tree, tree->value);
 	}
 }
