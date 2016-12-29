@@ -78,6 +78,6 @@ int main()
 		}
 	}
 
-	deleteTree(tree);
+	deleteTree(working);
 	return 0;
 }

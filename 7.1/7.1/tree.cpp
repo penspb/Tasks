@@ -152,6 +152,6 @@ void deleteTree(Tree *&tree)
 {
 	while (tree != nullptr)
 	{
-		deleteValue(tree, tree->value);
+		deleteValue(tree->value, tree);
 	}
 }
