@@ -36,21 +36,21 @@ bool isEmpty(Phonebook *head)
 
 void read(Phonebook *&head)
 {
-	FILE *ptrFile = fopen("text.txt", "r");
+	ifsream ptrFile("text.txt");
 
 	if (!access("text.txt", 0))
 	{
-		while (!feof(ptrFile))
+		while (!ptrFile.eof())
 		{
 			string name = "";
 			string phone = "";
-			cin >> name;
-			cin >> phone;
+			ptrFile >> name;
+			ptrFile >> phone;
 			push(head, name, phone);
 		}
 	}
 
-	fclose(ptrFile);
+	ptrFile.cloce();
 }
 
 void print(Phonebook *&head)
