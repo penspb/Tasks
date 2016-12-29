@@ -73,7 +73,7 @@ void findingName(phoneBook array[], int quantity, const string &number)
 
 void save(phoneBook array[], int quantity)
 {
-	ifstream ptrFile("text.txt");
+	ofstream ptrFile("text.txt");
 	if (!access("text.txt", 0))
 	{
 		for (int i = 0; i < quantity; i++)
@@ -87,7 +87,7 @@ void save(phoneBook array[], int quantity)
 
 void read(phoneBook array[], int &quantity)
 {
-	ofstream ptrFile("text.txt");
+	ifstream ptrFile("text.txt");
 
 	while (!feof(ptrFile))
 	{
