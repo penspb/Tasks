@@ -1,0 +1,10 @@
+abc
+/* test */
+def
+a/ / * b//* * / test2 **/
+c/
+*d*/
+/* a*
+/b*/
+ghi
+/*a*//*b*/

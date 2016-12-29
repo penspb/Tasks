@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{374106AD-436A-42F9-AFF7-F2902F8E952B}</ProjectGuid>
+    <ProjectGuid>{FAA1151B-E65F-4280-8AED-BB09F2912F74}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>My61</RootNamespace>
+    <RootNamespace>My132</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -78,11 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="6.1.cpp" />
-    <ClCompile Include="stact.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="stack.h" />
+    <ClCompile Include="13.2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
