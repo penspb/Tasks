@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void ShowTown(int *town, int quantityOfTown, int quantityOfCapital)
+void showTown(int *town, int quantityOfTown, int quantityOfCapital)
 {
 	for (int i = 1; i <= quantityOfCapital; i++)
 	{
@@ -19,7 +19,7 @@ void ShowTown(int *town, int quantityOfTown, int quantityOfCapital)
 	}
 }
 
-bool FreeTown(int *town, int quantityOfTown)
+bool freeTown(int *town, int quantityOfTown)
 {
 	for (int i = 1; i <= quantityOfTown; i++)
 	{
@@ -63,7 +63,7 @@ void addTown(int *town, int **road, int quantityOfTown, int k)
 
 void result(int *town, int **road, int quantityOfTown, int quantityOfCapital)
 {
-	while (FreeTown(town, quantityOfTown))
+	while (freeTown(town, quantityOfTown))
 	{
 		for (int i = 1; i <= quantityOfCapital; i++)
 		{
@@ -151,7 +151,7 @@ int main()
 		result(town, road, quantityOfTown, quantityOfCapital);
 
 		cout << endl << "Итоговое распределение:" << endl;
-		ShowTown(town, quantityOfTown, quantityOfCapital);
+		showTown(town, quantityOfTown, quantityOfCapital);
 		
 	
 		clean(town, road, quantityOfTown);
