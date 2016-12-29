@@ -174,7 +174,7 @@ int result(Tree *tree)
 	return numberResult;
 }
 
-void deleteTree(Tree *tree)
+void deleteTree(Tree *&tree)
 {
 	if (tree == nullptr)
 	{

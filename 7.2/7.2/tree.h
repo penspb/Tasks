@@ -28,4 +28,4 @@ void createTree(Tree *tree, int count, const string &line);
 int result(Tree *tree);
 
 //delete tree
-void deleteTree(Tree *tree);
+void deleteTree(Tree *&tree);
