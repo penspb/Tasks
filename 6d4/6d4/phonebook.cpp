@@ -8,9 +8,9 @@ using namespace std;
 
 struct Phonebook
 {
-	string name;
-	string number;
-	Phonebook *next;
+std::string name;
+std::string number;
+Phonebook *next;
 };
 
 void push(Phonebook *&head, const string &name,const string &number)
@@ -36,7 +36,7 @@ bool isEmpty(Phonebook *head)
 
 void read(Phonebook *&head)
 {
-	ifsream ptrFile("text.txt");
+	ifstream ptrFile("text.txt");
 
 	if (!access("text.txt", 0))
 	{
@@ -50,7 +50,7 @@ void read(Phonebook *&head)
 		}
 	}
 
-	ptrFile.cloce();
+	ptrFile.close();
 }
 
 void print(Phonebook *&head)
@@ -86,7 +86,7 @@ string returnName(Phonebook *head)
 	return head->name;
 }
 
-Phonebook *returnNext(Phonebook *head)
+Phonebook *&returnNext(Phonebook *head)
 {
 	return head->next;
 }

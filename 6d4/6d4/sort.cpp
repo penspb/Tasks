@@ -1,6 +1,8 @@
 #include "phonebook.h"
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <io.h>
 
 void assunder(Phonebook *&head, Phonebook *&left, Phonebook *&right)
 {
@@ -55,12 +57,13 @@ Phonebook *merge(Phonebook *&left, Phonebook *&right, bool sign)
 		if (returnName(left) <= returnName(right))
 		{
 			all = left;
-			all->next = merge(returnNext(left), right);
+
+			returnNext(all) = merge(returnNext(left), right);
 		}
 		else
 		{
 			all = right;
-			all->next = merge(left, returnNext(right));
+			returnNext(all) = merge(left, returnNext(right));
 		}
 	}
 	else
@@ -68,12 +71,12 @@ Phonebook *merge(Phonebook *&left, Phonebook *&right, bool sign)
 		if (returnNumber(left) <= returnNumber(right))
 		{
 			all = left;
-			all->next = merge(returnNext(left), right);
+			returnNext(all) = merge(returnNext(left), right);
 		}
 		else
 		{
 			all = right;
-			all->next = merge(left, returnNext(right));
+			returnNext(all) = merge(left, returnNext(right));
 		}
 	}
 	return all;
