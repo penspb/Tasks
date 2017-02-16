@@ -1,6 +1,5 @@
-#include<conio.h>
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -38,8 +37,8 @@ void spanningTree(int **result, int **array, int size)
 	
 	int min = 0;
 	int minCost = 0;
-	int visited[10] = { 0 };
-	visited[1] = 1;
+	bool visited[10] = { false };
+	visited[0] = false;
 	cout << endl;
 
 	int path[100] = { 0 };
@@ -48,13 +47,13 @@ void spanningTree(int **result, int **array, int size)
 	while (counter < size)
 	{
 		min = maxWeight;
-		for (int i = 1; i <= size; i++)
+		for (int i = 0; i < size; i++)
 		{
-			for (int j = 1; j <= size; j++)
+			for (int j = 0; j < size; j++)
 			{
 				if (array[i][j] < min)
 				{
-					if (visited[i] != 0)
+					if (visited[i] = true)
 					{
 						min = array[i][j];
 						begin = i;
@@ -62,7 +61,7 @@ void spanningTree(int **result, int **array, int size)
 					}
 				}
 			}
-			if (visited[begin] == 0 || visited[end] == 0)
+			if (visited[begin] == false || visited[end] == false)
 			{
 				path[indexOfPath] = end;
 				indexOfPath;
@@ -72,7 +71,7 @@ void spanningTree(int **result, int **array, int size)
 				
 				counter++;
 				minCost += min;
-				visited[end] = 1;
+				visited[end] = true;
 
 				array[begin][end] = maxWeight;
 				array[end][begin] = maxWeight;
@@ -82,7 +81,7 @@ void spanningTree(int **result, int **array, int size)
 	}
 }
 
-void main()
+int main()
 {
 	setlocale(LC_ALL, "Russian");
 
@@ -96,7 +95,7 @@ void main()
 
 	for (int i = 1; i <= size; i++)
 	{
-		cout << result[i][0] << " " << result[i][1] << endl;
+		cout << result[i][0] + 1 << " " << result[i][1] + 1 << endl;
 	}
 
 	for (int i = 0; i <= size; i++)
