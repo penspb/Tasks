@@ -24,24 +24,6 @@ Tree *create()
 	return tree;
 }
 
-bool searchValue(int value, Tree *tree)
-{
-	if (tree == nullptr)
-	{
-		return false;
-	}
-	if (value > tree->value)
-	{
-		searchValue(value, tree->right);
-	}
-	if (value < tree->value)
-	{
-		searchValue(value, tree->left);
-	}
-
-	return true;
-}
-
 bool sign(char ch)
 {
 	return ch == '*' || ch == '/' || ch == '+' || ch == '-';
@@ -71,7 +53,7 @@ void print(Tree *tree)
 
 void addValue(int value, Tree *&tree)
 {
-	Tree *newTree = tree;
+	Tree *newTree = new Tree;
 	newTree->symbol = '!';
 	newTree->value = value;
 	newTree->left = nullptr;
@@ -85,7 +67,7 @@ void addSymbol(char symbol, Tree *&tree)
 {
 	Tree *newTree = tree;
 	newTree->symbol = symbol;
-	newTree->value = - 1;
+	newTree->value = -1;
 	newTree->left = nullptr;
 	newTree->right = nullptr;
 
@@ -174,16 +156,16 @@ int result(Tree *tree)
 	return numberResult;
 }
 
-void deleteTree(Tree *&tree)
+void deleteTree(Tree *tree)
 {
 	if (tree == nullptr)
 	{
-		delete tree;
 		return;
 	}
 	if ((tree->left == nullptr) && (tree->right == nullptr))
 	{
 		delete tree;
+		tree = nullptr;
 	}
 	else
 	{

@@ -6,9 +6,6 @@ struct Tree;
 // create Tree
 Tree *create();
 
-//search value
-bool searchValue(int value, Tree *tree);
-
 //sign
 bool sign(char ch);
 
@@ -22,10 +19,11 @@ void addValue(int value, Tree *&tree);
 //add new symbol
 void addSymbol(char symbol, Tree *&tree);
 
+//create new tree
 void createTree(Tree *tree, int count, const string &line);
 
 //count the result
 int result(Tree *tree);
 
 //delete tree
-void deleteTree(Tree *&tree);
+void deleteTree(Tree *tree);
