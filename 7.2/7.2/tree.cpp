@@ -60,19 +60,17 @@ void addValue(int value, Tree *&tree)
 	newTree->right = nullptr;
 
 	tree = newTree;
-	delete newTree;
 }
 
 void addSymbol(char symbol, Tree *&tree)
 {
-	Tree *newTree = tree;
+	Tree *newTree = new Tree;
 	newTree->symbol = symbol;
 	newTree->value = -1;
 	newTree->left = nullptr;
 	newTree->right = nullptr;
 
 	tree = newTree;
-	delete newTree;
 }
 
 void createTree(Tree *tree, int count, const string &line)
