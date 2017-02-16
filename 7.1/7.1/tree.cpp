@@ -26,11 +26,8 @@ bool searchValue(int value, Tree *tree)
 	{
 		return searchValue(value, tree->left);
 	}
-
-	if (value == tree->value)
-	{
-		return true;
-	}
+	
+	return true;
 }
 
 void printFromMaxToMin(Tree *tree)
@@ -93,16 +90,21 @@ void add(int value, Tree *&tree)
 	}
 }
 
-void deleteValue(int value, Tree *&tree)
+Tree *findLeftEnd(Tree *&tree)
 {
-	if (!searchValue(value, tree))
+	while (tree->left != nullptr)
 	{
-		cout << "This value isn't available" << endl;
-		return;
+		tree = tree->left;
 	}
 
-	if (tree == nullptr)
+	return tree;
+}
+
+void deleteValue(int value, Tree *&tree)
+{
+	if ((!searchValue(value, tree)) || (tree == nullptr))
 	{
+		cout << "This value isn't available" << endl;
 		return;
 	}
 
@@ -117,25 +119,25 @@ void deleteValue(int value, Tree *&tree)
 			}
 			else
 			{
+				auto zero = tree;
 				tree = tree->right;
+				delete zero;
 			}
 		}
 		else
 		{
 			if (tree->right == nullptr)
 			{
+				auto zero = tree;
 				tree = tree->left;
+				delete zero;
 			}
 			else
 			{
-				Tree *zero = tree->left;
-				while (zero->right != nullptr)
-				{
-					zero = zero->right;
-				}
-				tree->value = zero->value;
-				delete zero;
-				zero = nullptr;
+				auto first = findLeftEnd(tree->right);
+				tree->value = first->value;
+
+				deleteValue(first->value, tree->right);
 			}
 		}
 	}
