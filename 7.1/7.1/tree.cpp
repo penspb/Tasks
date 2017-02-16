@@ -18,14 +18,16 @@ bool searchValue(int value, Tree *tree)
 	}
 	if (value > tree->value)
 	{
-		searchValue(value, tree->left);
+		return searchValue(value, tree->right);
 	}
 	if (value < tree->value)
 	{
-		searchValue(value, tree->right);
+		return searchValue(value, tree->left);
 	}
-
-	return true;
+	if (value == tree->value)
+	{
+		return true;
+	}
 }
 
 void printFromMaxToMin(Tree *tree)
@@ -108,19 +110,17 @@ void deleteValue(int value, Tree *&tree)
 			if (tree->right == nullptr)
 			{
 				delete tree;
+				tree = nullptr;
 			}
 			else
 			{
-				auto oldTree = tree;
 				tree = tree->right;
-				delete oldTree;
 			}
 		}
 		else
 		{
 			if (tree->right == nullptr)
 			{
-				auto oldTree = tree;
 				tree = tree->left;
 			}
 			else
@@ -132,6 +132,7 @@ void deleteValue(int value, Tree *&tree)
 				}
 				tree->value = zero->value;
 				delete zero;
+				zero = nullptr;
 			}
 		}
 	}
