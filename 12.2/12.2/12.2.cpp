@@ -85,11 +85,10 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	int **array;
+	int **array = nullptr;
 	int size = scan(array);
 
-	int **result;
-	result = new int*[size + 1];
+	int **result = new int*[size + 1];
 
 	spanningTree(result, array, size);
 
