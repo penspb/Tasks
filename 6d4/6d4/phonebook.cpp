@@ -19,7 +19,7 @@ void push(Phonebook *&head, const string &name, const string &number)
 	head = newElement;
 }
 
-void deletePhonebok(Phonebook *&head)
+void deletePhonebook(Phonebook *&head)
 {
 	while (head != nullptr)
 	{
@@ -73,7 +73,7 @@ int quantityOfSubscriber(Phonebook *head)
 		quantity++;
 		newElement = newElement->next;
 	}
-	
+
 	return quantity;
 }
 
@@ -87,7 +87,12 @@ string returnName(Phonebook *head)
 	return head->name;
 }
 
-Phonebook *returnNext(Phonebook *head)
+Phonebook* returnNext(Phonebook *head)
 {
 	return head->next;
+}
+
+void setNext(Phonebook *&head, Phonebook *nextElement)
+{
+	head->next = nextElement;
 }

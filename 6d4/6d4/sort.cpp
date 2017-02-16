@@ -3,38 +3,26 @@
 #include <string>
 #include <fstream>
 
-void assunder(Phonebook *&head, Phonebook *&left, Phonebook *&right)
+void assunder(Phonebook *head, Phonebook *&left, Phonebook *&right)
 {
-	int quantity = quantityOfSubscriber(left);
+	int quantity = quantityOfSubscriber(head);
+	int leftSize = quantity / 2;
 
-	Phonebook *zero = head;
-	Phonebook *first = head;
+	left = head;
+	right = head;
 
-	if ((head == nullptr) || (returnNext(head) == nullptr))
+	Phonebook *preRight = nullptr;
+
+	for (int i = 0; i < leftSize; i++)
 	{
-		left = head;
-		right = nullptr;
+		preRight = right;
+		right = returnNext(right);
 	}
-	else
-	{
-		first = returnNext(head);
 
-		while (first != nullptr)
-		{
-			first = returnNext(first);
-			if (first != nullptr)
-			{
-				zero = returnNext(zero);
-				first = returnNext(first);
-			}
-		}
-
-		left = head;
-		right = returnNext(zero);
-	}
+	setNext(preRight, nullptr);
 }
 
-Phonebook *merge(Phonebook *&left, Phonebook *&right, bool sign)
+Phonebook* merge(Phonebook *left, Phonebook *right, bool sign)
 {
 	Phonebook *all = nullptr;
 	if (left == nullptr)
@@ -48,19 +36,18 @@ Phonebook *merge(Phonebook *&left, Phonebook *&right, bool sign)
 			return left;
 		}
 	}
-	
+
 	if (sign)
 	{
 		if (returnName(left) <= returnName(right))
 		{
 			all = left;
-
-			returnNext(all) = merge(returnNext(left), right, sign);
+			setNext(all, merge(returnNext(left), right, sign));
 		}
 		else
 		{
 			all = right;
-			returnNext(all) = merge(left, returnNext(right), sign);
+			setNext(all, merge(left, returnNext(right), sign));
 		}
 	}
 	else
@@ -68,12 +55,12 @@ Phonebook *merge(Phonebook *&left, Phonebook *&right, bool sign)
 		if (returnNumber(left) <= returnNumber(right))
 		{
 			all = left;
-			returnNext(all) = merge(returnNext(left), right, sign);
+			setNext(all, merge(returnNext(left), right, sign));
 		}
 		else
 		{
 			all = right;
-			returnNext(all) = merge(left, returnNext(right), sign);
+			setNext(all, merge(left, returnNext(right), sign));
 		}
 	}
 	return all;
@@ -88,9 +75,9 @@ void mergeSort(Phonebook *&head, bool sign)
 
 	Phonebook *zero = nullptr;
 	Phonebook *first = nullptr;
-	
+
 	assunder(head, zero, first);
 	mergeSort(zero, sign);
 	mergeSort(first, sign);
-	merge(zero, first, sign);
+	head = merge(zero, first, sign);
 }

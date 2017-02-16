@@ -1,5 +1,5 @@
 #include "sort.h"
-#include "phonebook.h" 
+#include "phonebook.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -23,13 +23,13 @@ bool test()
 	{
 		if (returnName(returnNext(newList)) < returnName(newList))
 		{
-			deletePhonebok(working);
+			deletePhonebook(working);
 			return false;
 		}
 		newList = returnNext(newList);
 	}
 
-	deletePhonebok(working);
+	deletePhonebook(working);
 	return true;
 }
 
@@ -37,14 +37,14 @@ int main()
 {
 	if (!test())
 	{
-		cout << "Проблмы" << endl;
+		cout << "Проблемы" << endl;
 		return 0;
 	}
 
 	setlocale(LC_ALL, "Russian");
 	Phonebook *working = nullptr;
 	read(working);
-	
+
 	cout << "Если Вы желаете отсортировать телефонную книгу по именам, то введите 1. Иначе введите 0." << endl;
 	cout << "Спасибо. Операция выполняется." << endl;
 
@@ -60,7 +60,7 @@ int main()
 	mergeSort(working, sign);
 	print(working);
 
-	deletePhonebok(working);
+	deletePhonebook(working);
 
 	return 0;
 }

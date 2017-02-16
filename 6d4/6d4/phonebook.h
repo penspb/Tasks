@@ -10,7 +10,7 @@ struct Phonebook;
 void push(Phonebook *&head, const std::string &name, const std::string &number);
 
 //delete phonebook
-void deletePhonebok(Phonebook *&head);
+void deletePhonebook(Phonebook *&head);
 
 //check: empty/not
 bool isEmpty(Phonebook *head);
@@ -32,3 +32,6 @@ std::string returnName(Phonebook *head);
 
 //return next element
 Phonebook *returnNext(Phonebook *head);
+
+//set next element
+void setNext(Phonebook *&head, Phonebook* nextElement);
