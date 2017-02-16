@@ -1,152 +1,131 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
+#include <map>
+#include <algorithm>
 
 using namespace std;
 
-void symbolTable(int array[], const string &line)
+vector<int> prefixFunction(const string &line) 
 {
-	const int sizeOfArray = 256;
-	string newLine = "";
+	int length = line.size();
 
-	for (int i = 0; i < line.length() - 1; i++)
-	{
-		array[int(line[i])] = i + 1;
-	}
-}
+	vector<int> pi(length);
+	int count = pi[0] = 0;
 
-void suffixTable(int array[], const string &line)
-{
-	array[0] = 1;
-	for (int i = 1; i < line.length(); i++)
+	for (int i = 2; i <= length; ++i)
 	{
-		for (int j = 0; j < line.length() + 1 - i; j++)
+		while ((count > 0) && (line[count] != line[i - 1]))
 		{
-			int count = 0;
-			while (line[j + count] == line[line.length() + 1 - i + count])
-			{
-				count++;
-			}
-			if (count == i)
-			{
-				array[i] = line.length() + 1 - i - j;
-			}
+			count = pi[count - 1];
 		}
+
+		if (line[count] == line[i - 1])
+		{
+			count++;
+		}
+
+		pi[i - 1] = count;
 	}
+
+	return pi;
 }
 
-void searching(const string &line)
+int main() 
 {
-	int sizeOfLine = line.length();
-
-	int symbol[256];
-	symbolTable(symbol, line);
-
-	int *suffix = new int[sizeOfLine + 1];
-	suffixTable(suffix, line);
-
+	setlocale(LC_ALL, "Russian");
 	ifstream file("text.txt");
 
 	if (!file.is_open())
 	{
-		cout << "File is not avaible" << endl;
+		cout << "Файл не доступен" << endl;
 	}
 	else
 	{
-		string st = "";
-		char ch = 'q';
+		string text = "";
+		string pattern = "";
+		
+		file >> text;
 
-		for (int i = 0; i < line.length() - 1; i++)
+		file.close();
+
+		cout << "Введите искомую подстроку: ";
+		cin >> pattern;
+		cout << endl;
+
+		vector<int> forPattern = prefixFunction(pattern);
+		vector<int> table;
 		{
-			cin >> ch;
-			st += ch;
+			string line = pattern;
+			reverse(line.begin(), line.end());
+			table = prefixFunction(line);
 		}
 
-		int count = line.length() - 1;
-		int index = 0;
+		int lengthOfPattern = pattern.size();
 
-		while (file.eof())
+		map<char, int> stopSymbols;
+
+		for (int i = 0; i < lengthOfPattern; i++)
 		{
-			cin >> ch;
-			count++;
-			index++;
+			stopSymbols[pattern[i]] = i;
+		}
 
-			if (count == line.length())
+		map<int, int> suffix;
+
+		for (int i = 0; i < lengthOfPattern; i++)
+		{
+			suffix[i] = lengthOfPattern - forPattern.back();
+		}
+
+		for (int i = 1; i < lengthOfPattern; i++)
+		{
+			int j = table[i];
+			suffix[j] = min(suffix[i], i - j + 1);
+		}
+
+		vector<int> answer;
+
+		for (int shift = 0; shift <= int(text.size()) - lengthOfPattern;)
+		{
+			int position = lengthOfPattern - 1;
+
+			while (position >= 0 && pattern[position] == text[shift + position])
 			{
-				bool check = false;
-				int j = line.length() - 1;
-				while ((j >= 0) && (st[line.length() - 1 - j] == line[line.length() - 1 - j]))
+				position--;
+			}
+
+			if (position < 0)
+			{
+				answer.push_back(shift);
+				shift += suffix[lengthOfPattern - 1];
+			}
+
+			if (position == lengthOfPattern - 1)
+			{
+				auto working = stopSymbols.find(text[shift + position]);
+				if (working == stopSymbols.end())
 				{
-					j++;
-				}
-				if (j == line.length())
-				{
-					cout << "Подстрока содержится в строке, начиная с элемента: " << index << endl;
+					shift += position - (-1);
 				}
 				else
 				{
-					if (j == 0)
-					{
-						for (int k = 0; k < line.length(); k++)
-						{
-							cin >> ch;
-							st[k] = ch;
-							index++;
-						}
-					}
-					else
-					{
-						if (j == 1)
-						{
-							char newchar = st[line.length() - 1];
-							for (int k = 0; k < line.length(); k++)
-							{
-								if (k < line.length() - symbol[newchar])
-								{
-									st[k] = st[k + symbol[newchar]];
-								}
-								else
-								{
-									cin >> ch;
-									st[k] = ch;
-									index++;
-								}
-							}
-						}
-						else
-						{
-							for (int k = 0; k < line.length(); k++)
-							{
-								if (k < line.length() - suffix[j])
-								{
-									st[k] = st[k + suffix[j]];
-								}
-								else
-								{
-									cin >> ch;
-									st[k] = ch;
-									index++;
-								}
-							}
-						}
-					}
+					shift += position - working->second;
 				}
 			}
+			else
+			{
+				shift += suffix[lengthOfPattern - position - 1];
+			}
 		}
+		cout << "Количество совпадений: " << answer.size() << endl;
+
+		for (int i : answer)
+		{
+			cout << (i + 1) << ' ';
+		}
+
 	}
-	file.close();
-						
-}
 
-int main()
-{
-	setlocale(LC_ALL, "Russian");
-	string line = "";
-	cout << "Пожалуйста, введите искомую подстроку" << endl;
-	getline(cin, line);
-
-	cout << line;
-
-	searching(line);
 	return 0;
 }
