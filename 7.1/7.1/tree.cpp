@@ -16,14 +16,17 @@ bool searchValue(int value, Tree *tree)
 	{
 		return false;
 	}
+
 	if (value > tree->value)
 	{
 		return searchValue(value, tree->right);
 	}
+
 	if (value < tree->value)
 	{
 		return searchValue(value, tree->left);
 	}
+
 	if (value == tree->value)
 	{
 		return true;
