@@ -8,7 +8,7 @@ void assunder(Phonebook *&head, Phonebook *&left, Phonebook *&right)
 	int quantity = quantityOfSubscriber(left);
 
 	Phonebook *zero = head;
-	Phonebook *first = head;;
+	Phonebook *first = head;
 
 	if ((head == nullptr) || (returnNext(head) == nullptr))
 	{
@@ -32,8 +32,6 @@ void assunder(Phonebook *&head, Phonebook *&left, Phonebook *&right)
 		left = head;
 		right = returnNext(zero);
 	}
-	delete first;
-	delete zero;
 }
 
 Phonebook *merge(Phonebook *&left, Phonebook *&right, bool sign)

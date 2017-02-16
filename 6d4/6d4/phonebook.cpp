@@ -8,12 +8,12 @@ using namespace std;
 
 struct Phonebook
 {
-	std::string name;
-	std::string number;
+	string name;
+	string number;
 	Phonebook *next;
 };
 
-void push(Phonebook *&head, const string &name,const string &number)
+void push(Phonebook *&head, const string &name, const string &number)
 {
 	auto newElement = new Phonebook{ name, number, head };
 	head = newElement;
@@ -53,17 +53,18 @@ void read(Phonebook *&head)
 	ptrFile.close();
 }
 
-void print(Phonebook *&head)
+void print(Phonebook *head)
 {
 	Phonebook *newElement = head;
 
 	while (newElement != nullptr)
 	{
 		cout << newElement->name << " " << newElement->number << endl;
+		newElement = newElement->next;
 	}
 }
 
-int quantityOfSubscriber(Phonebook *&head)
+int quantityOfSubscriber(Phonebook *head)
 {
 	Phonebook *newElement = head;
 	int quantity = 0;
@@ -89,22 +90,4 @@ string returnName(Phonebook *head)
 Phonebook *returnNext(Phonebook *head)
 {
 	return head->next;
-}
-
-void addAfter(Phonebook *&head, const string &name, const string &number)
-{
-	Phonebook *zero = head;
-
-	if (zero == nullptr)
-	{
-		head = new Phonebook{ name, number, nullptr };
-	}
-	else
-	{
-		while (zero->next != nullptr)
-		{
-			zero = zero->next;
-		}
-		zero->next = new Phonebook{ name, number, nullptr };
-	}
 }

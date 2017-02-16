@@ -17,14 +17,16 @@ bool test()
 	mergeSort(working, true);
 
 	const int quantity = 4;
+
+	Phonebook *newList = working;
 	for (int i = 0; i < quantity - 1; i++)
 	{
-		if (returnName(returnNext(working)) < returnName(working))
+		if (returnName(returnNext(newList)) < returnName(newList))
 		{
 			deletePhonebok(working);
 			return false;
 		}
-		working = returnNext(working);
+		newList = returnNext(newList);
 	}
 
 	deletePhonebok(working);
@@ -46,11 +48,11 @@ int main()
 	cout << "Если Вы желаете отсортировать телефонную книгу по именам, то введите 1. Иначе введите 0." << endl;
 	cout << "Спасибо. Операция выполняется." << endl;
 
-	int intsign = 0;
-	cin >> intsign;
+	int intSign = 0;
+	cin >> intSign;
 
 	bool sign = false;
-	if (intsign == 1)
+	if (intSign == 1)
 	{
 		sign = true;
 	}

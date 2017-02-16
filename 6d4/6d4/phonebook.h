@@ -19,10 +19,10 @@ bool isEmpty(Phonebook *head);
 void read(Phonebook *&head);
 
 //print list
-void print(Phonebook *&head);
+void print(Phonebook *head);
 
 //quantity
-int quantityOfSubscriber(Phonebook *&head);
+int quantityOfSubscriber(Phonebook *head);
 
 //return number of element
 std::string returnNumber(Phonebook *head);
@@ -32,6 +32,3 @@ std::string returnName(Phonebook *head);
 
 //return next element
 Phonebook *returnNext(Phonebook *head);
-
-//add after last element
-void addAfter(Phonebook *&head, std::string &name, std::string &number);
