@@ -3,13 +3,6 @@
 #include <iostream>
 #include <string>
 
-/*struct Phonebook
-{
-	std::string name;
-	std::string number;
-	Phonebook *next;
-};*/
-
 //phonebook
 struct Phonebook;
 
@@ -38,9 +31,7 @@ std::string returnNumber(Phonebook *head);
 std::string returnName(Phonebook *head);
 
 //return next element
-Phonebook *&returnNext(Phonebook *head);
-
-Phonebook *returnNextNext(Phonebook *head);
+Phonebook *returnNext(Phonebook *head);
 
 //add after last element
-void addAfter(Phonebook *&head, std::string name, std::string number);
+void addAfter(Phonebook *&head, std::string &name, std::string &number);

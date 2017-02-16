@@ -8,9 +8,9 @@ using namespace std;
 
 struct Phonebook
 {
-std::string name;
-std::string number;
-Phonebook *next;
+	std::string name;
+	std::string number;
+	Phonebook *next;
 };
 
 void push(Phonebook *&head, const string &name,const string &number)
@@ -86,7 +86,7 @@ string returnName(Phonebook *head)
 	return head->name;
 }
 
-Phonebook *&returnNext(Phonebook *head)
+Phonebook *returnNext(Phonebook *head)
 {
 	return head->next;
 }

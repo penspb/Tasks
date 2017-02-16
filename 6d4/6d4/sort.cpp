@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <io.h>
 
 void assunder(Phonebook *&head, Phonebook *&left, Phonebook *&right)
 {
@@ -58,12 +57,12 @@ Phonebook *merge(Phonebook *&left, Phonebook *&right, bool sign)
 		{
 			all = left;
 
-			returnNext(all) = merge(returnNext(left), right);
+			returnNext(all) = merge(returnNext(left), right, sign);
 		}
 		else
 		{
 			all = right;
-			returnNext(all) = merge(left, returnNext(right));
+			returnNext(all) = merge(left, returnNext(right), sign);
 		}
 	}
 	else
@@ -71,12 +70,12 @@ Phonebook *merge(Phonebook *&left, Phonebook *&right, bool sign)
 		if (returnNumber(left) <= returnNumber(right))
 		{
 			all = left;
-			returnNext(all) = merge(returnNext(left), right);
+			returnNext(all) = merge(returnNext(left), right, sign);
 		}
 		else
 		{
 			all = right;
-			returnNext(all) = merge(left, returnNext(right));
+			returnNext(all) = merge(left, returnNext(right), sign);
 		}
 	}
 	return all;
@@ -93,7 +92,7 @@ void mergeSort(Phonebook *&head, bool sign)
 	Phonebook *first = nullptr;
 	
 	assunder(head, zero, first);
-	mergeSort(zero);
-	mergeSort(first);
+	mergeSort(zero, sign);
+	mergeSort(first, sign);
 	merge(zero, first, sign);
 }
