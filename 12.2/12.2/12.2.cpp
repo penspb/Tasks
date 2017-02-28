@@ -12,9 +12,9 @@ int scan(int **array)
 	const int maxWeight = 1000;
 	array = new int*[size + 1];
 
-	for (int i = 1; i <= size; i++)
+	for (int i = 0; i < size; i++)
 	{
-		for (int j = 1; j <= size; j++)
+		for (int j = 0; j < size; j++)
 		{
 			file >> array[i][j];
 			if (array[i][j] == 0)
@@ -38,7 +38,7 @@ void spanningTree(int **result, int **array, int size)
 	int min = 0;
 	int minCost = 0;
 	bool visited[10] = { false };
-	visited[0] = false;
+	visited[0] = true;
 	cout << endl;
 
 	int path[100] = { 0 };
@@ -64,7 +64,7 @@ void spanningTree(int **result, int **array, int size)
 			if (visited[begin] == false || visited[end] == false)
 			{
 				path[indexOfPath] = end;
-				indexOfPath;
+				indexOfPath++;
 
 				result[counter][0] = begin;
 				result[counter][1] = end;
@@ -92,16 +92,17 @@ int main()
 
 	spanningTree(result, array, size);
 
-	for (int i = 1; i <= size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		cout << result[i][0] + 1 << " " << result[i][1] + 1 << endl;
 	}
 
-	for (int i = 0; i <= size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		delete array[i];
 		delete result[i];
 	}
+
 	delete array;
 	delete result;
 
